@@ -32,7 +32,7 @@ SHOW_TIMING_MATH = False
 app = FastAPI()
 
 if not OPENAI_API_KEY:
-    raise ValueError('Missing the OpenAI API key. Please set it in the .env file.')
+    raise ValueError('Missing the OpenAI API key. Please set it in the .env file...')
 
 @app.get("/", response_class=JSONResponse)
 async def index_page():
