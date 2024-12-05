@@ -46,15 +46,20 @@ async def handle_incoming_call(request: Request):
     response.say("Please wait while we connect your call to the A. I. voice assistant, powered by Twilio and the Open-A.I. Realtime API")
     response.pause(length=1)
     response.say("O.K. you can start talking!")
-    host = request.url.hostname
-    connect = Connect()
-    connect.stream(url=f'wss://{host:5050}/media-stream')
-    response.append(connect)
-    return HTMLResponse(content=str(response), media_type="application/xml")
+    try:
+        print(request.url.hostname)
+        host = request.url.hostname or "localhost"
+        connect = Connect()
+        connect.stream(url=f'wss://{host}/media-stream')
+        response.append(connect)
+        return HTMLResponse(content=str(response), media_type="application/xml")
+    except Exception as e:
+        print(f"Error: {e}")
+        return HTMLResponse(content=f"Error: {e}", status_code=500)
 
 @app.websocket("/media-stream")
 async def handle_media_stream(websocket: WebSocket):
-    """Handle WebSocket connections between Twilio and OpenAI."""
+    """Handle WebSocket connections between Twilio and OpenAI.."""
     print("Client connected")
     await websocket.accept()
 
