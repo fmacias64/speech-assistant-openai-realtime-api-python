@@ -50,9 +50,9 @@ async def handle_incoming_call(request: Request):
         print(request.url.hostname)
         host = request.url.hostname or "localhost"
         connect = Connect()
-        print(f'wss://{host}:5050/media-stream   1')
-        connect.stream(url=f'wss://{host}:5050/media-stream')
-        print(f'wss://{host}:5050/media-stream   2')
+        print(f'wss://{host}/media-stream   1')
+        connect.stream(url=f'wss://{host}/media-stream')
+        print(f'wss://{host}/media-stream   2')
         response.append(connect)
         return HTMLResponse(content=str(response), media_type="application/xml")
     except Exception as e:
