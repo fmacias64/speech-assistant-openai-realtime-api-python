@@ -153,7 +153,7 @@ async def handle_media_stream(websocket: WebSocket):
             nonlocal response_start_timestamp_twilio, last_assistant_item
             print("Handling speech started event.")
             if mark_queue and response_start_timestamp_twilio is not None:
-                elapsed_time = latest_media_timestamp - response_start_timestamp_twili8787/twilio-voice-webhook/agent_03ab32a2318503d2b8246aa0a3o
+                elapsed_time = latest_media_timestamp - response_start_timestamp_twilio
                 if SHOW_TIMING_MATH:
                     print(f"Calculating elapsed time for truncation: {latest_media_timestamp} - {response_start_timestamp_twilio} = {elapsed_time}ms")
 
